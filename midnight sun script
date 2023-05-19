@@ -12,6 +12,22 @@ getgenv().bossspawner = true
 getgenv().noclip = true
 getgenv().boss1 = false
 getgenv().findnpc = true
+getgenv().autoequip = true
+
+
+
+
+local function autoequip()
+spawn(function()
+    while getgenv().autoequip do task.wait()
+        for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+            if v.name == tool then
+                v.Parent = game.Players.LocalPlayer.Character
+            end
+        end
+    end
+end)
+end
 
 
 local function findnpc1()
@@ -382,6 +398,7 @@ Section:NewToggle(
         else
             getgenv().autofarm = false
         end
+        
         killauraforautofarm()
         autofarm(demon)
     end
@@ -577,6 +594,26 @@ Section_MISC:NewButton(
     "Completes the lute quest for you instantly",
     instalute
 )
+Section_MISC:NewToggle(
+        "Autoequip weapon",
+        "Toggles Autoequip",
+        function(state)
+            if state then
+                getgenv().autoequip = true
+            else
+                getgenv().autoequip = false
+            end
+            autoequip()
+        end
+    )
+    Section_MISC:NewDropdown(
+        "Choose weapon to equip",
+        "Weapon to choose",
+        {"Nichirin" },
+        function(currentOption)
+            tool = currentOption
+        end
+    )
 
 Section_MISC:NewToggle(
     "Killaura toggle",
