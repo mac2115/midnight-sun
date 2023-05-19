@@ -77,8 +77,12 @@ local function autogrip()
         function()
             if getgenv().autogrip == true then
                 while getgenv().autogrip do
-                    task.wait(10)
-                    game:GetService("Players").LocalPlayer.Character.Controller.RemoteEvent:FireServer("Grip")
+                if game:GetService("Workspace").Live.Npcs[demon].Humanoid.Health <= 0 then
+
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Live.Npcs[demon]
+                else
+                    return
+                end
                 end
             else
                 return
@@ -572,9 +576,7 @@ local Section_MISC = Tab:NewSection("Misc")
 Section_MISC:NewButton(
     "Instant unlock lute(must have lute quest active)",
     "Completes the lute quest for you instantly",
-    function()
-        instalute()
-    end
+    instalute
 )
 
 Section_MISC:NewToggle(
@@ -625,73 +627,73 @@ local Section_BT = Tab:NewSection("Breathing Trainers")
 Section_BAD:NewButton(
     "Demon Turner tp",
     "Tps to Demon Turner",
-    muzan()
+    muzan
 )
 
 Section_STW:NewButton(
     "STW trainer tp",
     "Tps to STW trainer",
-    stwtrainer()
+    stwtrainer
 )
 Section_STW:NewButton(
     "First idol(for upgraded STW)",
     "Tps to third idol",
-    idol1()
+    idol1
 )
 Section_STW:NewButton(
     "Second idol(for upgraded STW)",
     "Tps to third idol",
-    idol2()
+    idol2
 )
 Section_STW:NewButton(
     "Third idol(for upgraded STW)",
     "Tps to third idol",
-    idol3()
+    idol3
 )
 
 
 Section_Q:NewButton(
     "Lute quest tp",
     "Tps to Lute quest giver",
-    lutetp()
+    lutetp
 )
 
 
 Section_BT:NewButton(
     "Wind Trainer",
     "Tps to Wind trainer",
-    windtrainer()
+    windtrainer
 )
 
 Section_BT:NewButton(
     "Moon Trainer",
     "Tps to Moon trainer",
-    moontrainer()
+    moontrainer
 )
 Section_BT:NewButton(
     "Flame Trainer",
     "Tps to Flame trainer",
-    flametrainer()
+    flametrainer
 )
 Section_BT:NewButton(
     "Mist Trainer",
     "Tps to Mist trainer",
-    misttrainer()
+    misttrainer
 )
 Section_BT:NewButton(
     "Thunder Trainer",
     "Tps to Thunder trainer",
-    thundertrainer()
+    thundertrainer
 )
 Section_BT:NewButton(
     "Water Trainer",
     "Tps to Water trainer",
-    watertrainer()
+    watertrainer
 )
 Section_BT:NewButton(
     "Sound Trainer",
     "Tps to Sound trainer",
-    soundtrainer()
+    soundtrainer
 )
 local Tab = Window:NewTab("Server hops etc")
 local Section_SH = Tab:NewSection("Server hop")
@@ -699,7 +701,7 @@ local Section_SH = Tab:NewSection("Server hop")
 Section_SH:NewButton(
     "Server hop",
     "Hops into another server",
-    serverhop()
+    serverhop
 )
 
 local Tab = Window:NewTab("Ui settings")
@@ -709,5 +711,7 @@ Section_UI:NewKeybind(
     "Ui toggle",
     "Toggles Ui",
     Enum.KeyCode.X,
-    Library:ToggleUI()
+    function()
+        Library:ToggleUI()
+    end
 )
