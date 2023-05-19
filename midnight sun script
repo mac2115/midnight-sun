@@ -13,6 +13,7 @@ getgenv().noclip = true
 getgenv().boss1 = false
 getgenv().findnpc = true
 
+
 local function findnpc1()
     spawn(
         function()
@@ -72,17 +73,15 @@ local function noclip()
     )
 end
 
+local triggered = false
+
 local function autogrip()
     spawn(
         function()
             if getgenv().autogrip == true then
                 while getgenv().autogrip do
-                if game:GetService("Workspace").Live.Npcs[demon].Humanoid.Health <= 0 then
-
-                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Live.Npcs[demon]
-                else
-                    return
-                end
+                    task.wait(10)
+                    game:GetService("Players").LocalPlayer.Character.Controller.RemoteEvent:FireServer("Grip")
                 end
             else
                 return
