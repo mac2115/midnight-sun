@@ -1,3 +1,4 @@
+
 getgenv().killaura = false
 getgenv().godmode = false
 getgenv().autobreathing = false
