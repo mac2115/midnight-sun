@@ -540,7 +540,7 @@ Section:NewToggle(
 Section:NewDropdown(
     "Choose Event Npc to look for",
     "Choose an Npc",
-    {"Muzan", "Merchant", "OldMan"},
+    {"Muzan", "Merchant", "OldMan","Injured"},
     function(currentOption)
         npclookingfor = currentOption
     end
