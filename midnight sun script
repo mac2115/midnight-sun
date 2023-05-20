@@ -17,6 +17,10 @@ getgenv().instantmaxlvlslayer = true
 getgenv().getquest = true
 
 
+
+
+
+
  local function getquest()
     spawn(function()
 if getgenv().getquest == true then
@@ -58,32 +62,41 @@ end)
 end
 
 
-local function findnpc1()
-    spawn(
-        function()
-            if getgenv().findnpc == true then
-                while getgenv().findnpc do
-                    task.wait()
-                    for i, v in workspace:GetChildren() do
-                        if
-                            string.find(v.Name, "Injured") and v:FindFirstChild("FakeHead") and
-                                v:FindFirstChild("HumanoidRootPart") and
-                                not game.Players:GetPlayerFromCharacter(v)
-                         then
-                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame
-                        else
-                            print("No npc has spawned.")
-                            wait(60)
-                        end
-                    end
-                end
-                return nil
-            else
-                return
-            end
+
+
+local function OldManYochiro()
+    spawn(function()
+if getgenv().findnpc == true then
+
+    for i, v in pairs(game:GetService("Workspace"):GetChildren()) do
+        if v.Name == npclookingfor then
+            return v.Name
         end
-    )
+    end
+else
+    return
 end
+end)
+end
+
+local function findnpc()
+    spawn(function()
+        if getgenv().findnpc == true then
+for i, v in pairs(game:GetService("Workspace"):GetChildren()) do
+    if string.find(v.Name, npclookingfor) and v.Name ~= OldManYochiro() then
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame
+    end
+end
+else
+    return
+end
+end)
+end
+
+
+
+
+
 
 local function windtrainer()
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-28, 328, -1690)
@@ -522,13 +535,14 @@ Section:NewToggle(
         else
             getgenv().findnpc = false
         end
-        findnpc1()
+        findnpc()
+        OldManYochiro()
     end
 )
 Section:NewDropdown(
     "Choose Event Npc to look for",
     "Choose an Npc",
-    {"Muzan", "Merchant"},
+    {"Muzan", "Merchant", "OldMan"},
     function(currentOption)
         npclookingfor = currentOption
     end
