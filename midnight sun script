@@ -223,6 +223,7 @@ local function autogrip()
     )
 end
 
+
 local function chatspammer()
     spawn(
         function()
@@ -314,16 +315,21 @@ local function akazaspawner()
         function()
             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1045, 20, 3176)
             wait(2)
+            while not game:GetService("Workspace").Live.Bosses:FindFirstChild(bosses) do task.wait()
             keypress()
+            end
         end
     )
 end
 local function shuraspawner()
     spawn(
         function()
+            
             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1688, 162, -1863)
             wait(2)
+            while not game:GetService("Workspace").Live.Bosses:FindFirstChild(bosses) do task.wait()
             keypress()
+            end
         end
     )
 end
