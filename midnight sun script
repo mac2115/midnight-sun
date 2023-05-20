@@ -419,10 +419,11 @@ local function autobreathing()
         end
     end)
 end
+--ui--
 
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 
-local Window = Library.CreateLib("Midnight sun v2.00 by Mac#0014 and HTDBarsi <3", "DarkTheme")
+local Window = Library.CreateLib("Midnight sun v2.10 by Mac#0014 and HTDBarsi <3", "DarkTheme")
 
 local Tab = Window:NewTab("Autofarm")
 
