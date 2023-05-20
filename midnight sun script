@@ -27,45 +27,48 @@ getgenv().eventnpcfarm = true
 local function OldManYochiro1()
     spawn(function()
 if getgenv().eventnpcfarm == true then
+
     for i, v in pairs(game:GetService("Workspace"):GetChildren()) do
         if v.Name == eventlookingfor then
             return v.Name
         end
     end
+
 else
     return
 end
 end)
 end
+
+
 
 local function eventnpcfarm()
     spawn(function()
         if getgenv().eventnpcfarm == true then
             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(304, 100, 2321)
-            wait(5)
-            while getgenv().eventnpcfarm do task.wait()
+            wait(3)
+
+            while getgenv().eventnpcfarm and wait() do
+
 for i, v in pairs(game:GetService("Workspace"):GetChildren()) do
-
-
-
+    
     if string.find(v.Name, eventlookingfor) and v.Name ~= OldManYochiro1() and not v:FindFirstChild("Shadow A. Mask") then
         
-while getgenv().eventnpcfarm == true do task.wait()
 
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0, 0, positionevent)
 end
 end
 end
-
-
-end
 else
     return
-    end
-
-end)
 
 end
+
+    end)
+
+end
+
+
 
 
 
@@ -154,10 +157,12 @@ end
 local function findnpc()
     spawn(function()
         if getgenv().findnpc == true then
+            while getgenv().findnpc and wait() do
 for i, v in pairs(game:GetService("Workspace"):GetChildren()) do
     if string.find(v.Name, npclookingfor) and v.Name ~= OldManYochiro() and not v:FindFirstChild("Shadow A. Mask") then
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame
     end
+end
 end
 else
     return
@@ -619,7 +624,7 @@ Section:NewDropdown(
     end
 )
 
-local Section = Tab:NewSection("Event Npc farm(use god mode)")
+local Section = Tab:NewSection("Event Npc Farms(use god mode)")
 Section:NewToggle(
     "Auto Event mob farmer",
     "Automatically farms npc .",
@@ -637,8 +642,8 @@ Section:NewToggle(
 )
 
 Section:NewDropdown(
-    "Choose Event mob ",
-    "Chooses mob for the autofarm to farm",
+    "Choose Event Mob ",
+    "Chooses Mob for the autofarm to farm",
     {"Spider"},
     function(currentOption)
         eventlookingfor = currentOption
@@ -650,8 +655,8 @@ Section:NewDropdown(
 Section:NewSlider(
     "Farm position",
     "Farm position",
-    -7,
     7,
+    -7,
     function(s) -- 500 (MaxValue) | 0 (MinValue)
         positionevent = s
     end
