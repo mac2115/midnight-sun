@@ -1,4 +1,3 @@
-
 getgenv().killaura = false
 getgenv().godmode = false
 getgenv().autobreathing = false
@@ -67,7 +66,7 @@ local function findnpc1()
                     task.wait()
                     for i, v in workspace:GetChildren() do
                         if
-                            string.find(v.Name, npclookingfor) and v.Name ~= npclookingfor and
+                            string.find(v.Name, "Injured") and v:FindFirstChild("FakeHead") and
                                 v:FindFirstChild("HumanoidRootPart") and
                                 not game.Players:GetPlayerFromCharacter(v)
                          then
@@ -295,7 +294,7 @@ local function boss()
                         if game:GetService("Workspace").Live.Bosses:FindFirstChild(bosses) then
                             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =
                                 game:GetService("Workspace").Live.Bosses[bosses].HumanoidRootPart.CFrame *
-                                CFrame.new(0, position1, 0)
+                                CFrame.new(0, 0, position1)
                         elseif not game:GetService("Workspace").Live.Bosses:FindFirstChild(bosses) then
                             bossspawner()
                             wait(5)
