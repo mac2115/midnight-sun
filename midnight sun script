@@ -83,7 +83,7 @@ local function findnpc()
     spawn(function()
         if getgenv().findnpc == true then
 for i, v in pairs(game:GetService("Workspace"):GetChildren()) do
-    if string.find(v.Name, npclookingfor) and v.Name ~= OldManYochiro() then
+    if string.find(v.Name, npclookingfor) and v.Name ~= OldManYochiro() and not v:FindFirstChild("Shadow A. Mask") then
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame
     end
 end
@@ -92,8 +92,6 @@ else
 end
 end)
 end
-
-
 
 
 
