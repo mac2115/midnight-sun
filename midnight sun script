@@ -13,9 +13,33 @@ getgenv().noclip = true
 getgenv().boss1 = false
 getgenv().findnpc = true
 getgenv().autoequip = true
+getgenv().instantmaxlvlslayer = true
+getgenv().getquest = true
 
 
+ local function getquest()
+    spawn(function()
+if getgenv().getquest == true then
+    
+    game:GetService("ReplicatedStorage").Events.CrowEvent:FireServer("SpawnCrow")
 
+    game:GetService("Players").LocalPlayer.PlayerGui.Main.CrowQuest.LocalScript.RemoteEvent:FireServer("Accept")
+    end
+    end)
+ end
+
+local function instantlvl()
+spawn(function()
+if getgenv().instantmaxlvlslayer == true then
+while getgenv().instantmaxlvlslayer do task.wait()
+    game:GetService("ReplicatedStorage").Events.LuteEvent:FireServer("Win")
+    
+end
+else
+    return
+end
+end)
+end
 
 local function autoequip()
 spawn(function()
@@ -256,12 +280,12 @@ local function boss()
                         task.wait()
 
                         if game:GetService("Workspace").Live.Bosses:FindFirstChild(bosses) and not game:GetService("Workspace").Live.BossMinions:FindFirstChild("BossUltra") then
-                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Live.Bosses[bosses].HumanoidRootPart.CFrame * CFrame.new(0, position1, 0)
+                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Live.Bosses[bosses].HumanoidRootPart.CFrame * CFrame.new(0, 0, position1)
                         elseif not game:GetService("Workspace").Live.Bosses:FindFirstChild(bosses) then
                             bossspawner()
                             wait(5)
                         elseif game:GetService("Workspace").Live.BossMinions:FindFirstChild("BossUltra") then
-                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Live.BossMinions.BossUltra.HumanoidRootPart.CFrame * CFrame.new(0, position1, 0)
+                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Live.BossMinions.BossUltra.HumanoidRootPart.CFrame * CFrame.new(0, 0, position1)
                         end
                     end
                 elseif bosses == "Shura" then
@@ -331,7 +355,7 @@ local function autofarm(demon)
                 while getgenv().autofarm do
                     task.wait()
                     if game:GetService("Workspace").Live.Npcs:FindFirstChild(demon) then
-                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Live.Npcs[demon].HumanoidRootPart.CFrame * CFrame.new(0, position, 0)
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Live.Npcs[demon].HumanoidRootPart.CFrame * CFrame.new(0, 0, positionz)
                     end
                 end
             else
@@ -430,12 +454,12 @@ Section:NewToggle(
 )
 
 Section:NewSlider(
-    "Farm position()",
+    "Farm position",
     "Farm position",
     7,
     -6,
     function(s) -- 500 (MaxValue) | 0 (MinValue)
-        position = s
+        positionz = s
     end
 )
 
@@ -479,7 +503,7 @@ Section:NewToggle(
 )
 
 Section:NewSlider(
-    "Farm position for ",
+    "Farm position ",
     "Farm position",
     7,
     -7,
@@ -591,6 +615,30 @@ Section:NewSlider(
 )
 
 local Tab = Window:NewTab("Misc")
+
+
+local Section_MISC = Tab:NewSection("Instant max  lvl for slayers")
+
+Section_MISC:NewButton(
+    "Get crow quest(click first)",
+    "Gets you the required crow quest for instant lvl",
+    getquest
+)
+
+Section_MISC:NewToggle(
+        "Instant max lvl for slayers",
+        "Toggles instamax lvl",
+        function(state)
+            if state then
+                getgenv().instantmaxlvlslayer = true
+            else
+                getgenv().instantmaxlvlslayer = false
+            end
+            instantlvl()
+        end
+    )
+
+
 local Section_MISC = Tab:NewSection("Misc")
 
 Section_MISC:NewButton(
@@ -598,6 +646,7 @@ Section_MISC:NewButton(
     "Completes the lute quest for you instantly",
     instalute
 )
+
 Section_MISC:NewToggle(
         "Autoequip weapon",
         "Toggles Autoequip",
