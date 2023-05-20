@@ -19,6 +19,7 @@ getgenv().autoequip = true
 
 local function autoequip()
 spawn(function()
+    if getgenv().autoequip == true then
     while getgenv().autoequip do task.wait()
         for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
             if v.name == tool then
@@ -26,6 +27,9 @@ spawn(function()
             end
         end
     end
+else
+    return
+end
 end)
 end
 
