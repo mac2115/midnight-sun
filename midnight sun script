@@ -15,6 +15,68 @@ getgenv().findnpc = true
 getgenv().autoequip = true
 getgenv().instantmaxlvlslayer = true
 getgenv().getquest = true
+getgenv().eventnpcfarm = true
+
+
+local function eventspawn()
+    
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(312, 100, 2327)
+   
+end
+local function OldManYochiro1()
+    spawn(function()
+if getgenv().eventnpcfarm == true then
+
+    for i, v in pairs(game:GetService("Workspace"):GetChildren()) do
+        if v.Name == eventlookingfor then
+            return v.Name
+        end
+    end
+else
+    return
+end
+end)
+end
+
+local function eventnpcfarm()
+    spawn(function()
+        if getgenv().eventnpcfarm == true then
+for i, v in pairs(game:GetService("Workspace"):GetChildren()) do
+    if string.find(v.Name, eventlookingfor) and v.Name ~= OldManYochiro1() and not v:FindFirstChild("Shadow A. Mask") then
+while getgenv().eventnpcfarm == true do task.wait()
+
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0, 0, positionevent)
+end
+end
+end
+else
+    return
+    end
+
+end)
+
+end
+
+
+
+local function killauraforevent()
+    spawn(
+        function()
+            if getgenv().eventnpcfarm == true then
+                while getgenv().eventnpcfarm do
+                    task.wait()
+                    pcall(function()
+                        game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Tool").RemoteEvent:FireServer("M2")
+                        task.wait()
+                        game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Tool").RemoteEvent:FireServer("Hitbox",1,"M2")
+                    end)
+                end
+            else
+                return
+            end
+        end
+    )
+end
 
 
 
@@ -523,7 +585,7 @@ Section:NewSlider(
         position1 = s
     end
 )
-local Tab = Window:NewTab("Event Npc autotp")
+local Tab = Window:NewTab("Event Npc farm")
 local Section = Tab:NewSection("Event Npc autotp")
 Section:NewToggle(
     "Auto Event Npc teleporter",
@@ -546,6 +608,52 @@ Section:NewDropdown(
         npclookingfor = currentOption
     end
 )
+
+local Section = Tab:NewSection("Event Npc farm(use god mode)")
+Section:NewToggle(
+    "Auto Event Npc teleporter",
+    "Automatically teleports you to an npc if it spawned.",
+    function(state)
+        if state then
+            getgenv().eventnpcfarm = true
+        else
+            getgenv().eventnpcfarm = false
+        end
+        
+        OldManYochiro1()
+        eventnpcfarm()
+        killauraforevent()
+    end
+)
+Section:NewButton(
+    "Even mob spawn location(click first)",
+    "Tps to mob spawn location",
+    eventspawn
+)
+
+
+
+Section:NewDropdown(
+    "Choose Event mob ",
+    "Chooses mob for the autofarm to farm",
+    {"Spider"},
+    function(currentOption)
+        eventlookingfor = currentOption
+    end
+)
+
+
+
+Section:NewSlider(
+    "Farm position",
+    "Farm position",
+    -7,
+    7,
+    function(s) -- 500 (MaxValue) | 0 (MinValue)
+        positionevent = s
+    end
+)
+
 
 local Tab = Window:NewTab("Player")
 local Section = Tab:NewSection("Chat spammer")
