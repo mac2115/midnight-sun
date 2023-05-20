@@ -463,7 +463,7 @@ Section:NewSlider(
     end
 )
 
-local Section = Tab:NewSection("Autofarm Bosses(use noclip and godmode to avoid glitches)")
+local Section = Tab:NewSection("Autofarm Bosses(use  godmode)")
 
 Section:NewDropdown(
     "Choose boss to farm(must be spawned)",
