@@ -107,21 +107,18 @@ if getgenv().getquest == true then
     end)
  end
 
-local function instantlvl()
-spawn(function()
-if getgenv().instantmaxlvlslayer == true then
-    for i = 1,10 do 
-        task.spawn(function()
-          while getgenv().instantmaxlvlslayer do task.wait()
-            game:GetService("ReplicatedStorage").Events.LuteEvent:FireServer("Win")
-          end
-        end)
-      end
-    else
-        return
+ local function instantlvl()
+    spawn(function()
+        if getgenv().instantmaxlvlslayer == true then
+            while getgenv().instantmaxlvlslayer  do task.wait()
+                for i = 1,100 do 
+                game:GetService("ReplicatedStorage").Events.LuteEvent:FireServer("Win")
+                end
+            end
+        end
+    end)
 end
-end)
-end
+
 
 
 local function autoequip()
