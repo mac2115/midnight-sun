@@ -1,3 +1,5 @@
+
+
 getgenv().killaura = false
 getgenv().godmode = false
 getgenv().autobreathing = false
@@ -18,15 +20,13 @@ getgenv().getquest = true
 getgenv().eventnpcfarm = true
 
 
-local function eventspawn()
-    
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(312, 100, 2327)
-   
-end
+
+
+
+
 local function OldManYochiro1()
     spawn(function()
 if getgenv().eventnpcfarm == true then
-
     for i, v in pairs(game:GetService("Workspace"):GetChildren()) do
         if v.Name == eventlookingfor then
             return v.Name
@@ -41,13 +41,23 @@ end
 local function eventnpcfarm()
     spawn(function()
         if getgenv().eventnpcfarm == true then
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(304, 100, 2321)
+            wait(5)
+            while getgenv().eventnpcfarm do task.wait()
 for i, v in pairs(game:GetService("Workspace"):GetChildren()) do
+
+
+
     if string.find(v.Name, eventlookingfor) and v.Name ~= OldManYochiro1() and not v:FindFirstChild("Shadow A. Mask") then
+        
 while getgenv().eventnpcfarm == true do task.wait()
 
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0, 0, positionevent)
 end
 end
+end
+
+
 end
 else
     return
@@ -611,8 +621,8 @@ Section:NewDropdown(
 
 local Section = Tab:NewSection("Event Npc farm(use god mode)")
 Section:NewToggle(
-    "Auto Event Npc teleporter",
-    "Automatically teleports you to an npc if it spawned.",
+    "Auto Event mob farmer",
+    "Automatically farms npc .",
     function(state)
         if state then
             getgenv().eventnpcfarm = true
@@ -625,13 +635,6 @@ Section:NewToggle(
         killauraforevent()
     end
 )
-Section:NewButton(
-    "Even mob spawn location(click first)",
-    "Tps to mob spawn location",
-    eventspawn
-)
-
-
 
 Section:NewDropdown(
     "Choose Event mob ",
@@ -783,7 +786,7 @@ Section_MISC:NewToggle(
     Section_MISC:NewDropdown(
         "Choose weapon to equip",
         "Weapon to choose",
-        {"Nichirin" },
+        {"Nichirin", "Old Nichirin" },
         function(currentOption)
             tool = currentOption
         end
