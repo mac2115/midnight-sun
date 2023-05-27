@@ -18,9 +18,7 @@ getgenv().autoequip = true
 getgenv().instantmaxlvlslayer = true
 getgenv().getquest = true
 getgenv().eventnpcfarm = true
-
-
-
+local vim = game:service("VirtualInputManager")
 
 
 
@@ -223,6 +221,12 @@ local function autogrip()
     )
 end
 
+local function hold(keyCode, time)
+    vim:SendKeyEvent(true, keyCode, false, game)
+    task.wait(time)
+    vim:SendKeyEvent(false, keyCode, false, game)
+  end
+  
 
 local function chatspammer()
     spawn(
@@ -339,8 +343,11 @@ local function bossspawner()
         function()
             if bosses == "Akaza" then
                 akazaspawner()
+               
             elseif bosses == "Shura" then
+                
                 shuraspawner()
+                
             else
                 return
             end
@@ -374,11 +381,18 @@ local function boss()
                     while getgenv().bossautofarm do
                         task.wait()
 
+
+
+                    
+
                         if game:GetService("Workspace").Live.Bosses:FindFirstChild(bosses) and not game:GetService("Workspace").Live.BossMinions:FindFirstChild("BossUltra") then
+                            
                             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Live.Bosses[bosses].HumanoidRootPart.CFrame * CFrame.new(0, 0, position1)
+
                         elseif not game:GetService("Workspace").Live.Bosses:FindFirstChild(bosses) then
+                        
                             bossspawner()
-                            wait(5)
+                        wait(5)
                         elseif game:GetService("Workspace").Live.BossMinions:FindFirstChild("BossUltra") then
                             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Live.BossMinions.BossUltra.HumanoidRootPart.CFrame * CFrame.new(0, 0, position1)
                         end
@@ -391,8 +405,10 @@ local function boss()
                                 game:GetService("Workspace").Live.Bosses[bosses].HumanoidRootPart.CFrame *
                                 CFrame.new(0, 0, position1)
                         elseif not game:GetService("Workspace").Live.Bosses:FindFirstChild(bosses) then
+                           
                             bossspawner()
                             wait(5)
+                            
                         end
                     end
                 else
@@ -507,7 +523,7 @@ end
 
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 
-local Window = Library.CreateLib("Midnight sun v2.20 by Mac#0014 and HTDBarsi <3", "DarkTheme")
+local Window = Library.CreateLib("Midnight sun v2.30 by Mac#0014", "DarkTheme")
 
 local Tab = Window:NewTab("Autofarm")
 
