@@ -19,9 +19,13 @@ getgenv().instantmaxlvlslayer = true
 getgenv().getquest = true
 getgenv().eventnpcfarm = true
 local vim = game:service("VirtualInputManager")
+local function lvl5breath()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(196, 361, 2091)
+end
 
-
-
+local function suntrainer()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-113, 451, 2420)
+end
 local function OldManYochiro1()
     spawn(function()
 if getgenv().eventnpcfarm == true then
@@ -221,11 +225,6 @@ local function autogrip()
     )
 end
 
-local function hold(keyCode, time)
-    vim:SendKeyEvent(true, keyCode, false, game)
-    task.wait(time)
-    vim:SendKeyEvent(false, keyCode, false, game)
-  end
   
 
 local function chatspammer()
@@ -380,10 +379,6 @@ local function boss()
                 if bosses == "Akaza" then
                     while getgenv().bossautofarm do
                         task.wait()
-
-
-
-                    
 
                         if game:GetService("Workspace").Live.Bosses:FindFirstChild(bosses) and not game:GetService("Workspace").Live.BossMinions:FindFirstChild("BossUltra") then
                             
@@ -793,11 +788,7 @@ Section_MISC:NewToggle(
 
 local Section_MISC = Tab:NewSection("Misc")
 
-Section_MISC:NewButton(
-    "Instant unlock lute(must have lute quest active)",
-    "Completes the lute quest for you instantly",
-    instalute
-)
+
 
 Section_MISC:NewToggle(
         "Autoequip weapon",
@@ -865,6 +856,7 @@ local Section_STW = Tab:NewSection("See through world")
 local Section_Q = Tab:NewSection("Quests")
 local Section_BT = Tab:NewSection("Breathing Trainers")
 
+
 Section_BAD:NewButton(
     "Demon Turner tp",
     "Tps to Demon Turner",
@@ -892,6 +884,11 @@ Section_STW:NewButton(
     idol3
 )
 
+Section_Q:NewButton(
+    "Instant unlock lute(must have lute quest active)",
+    "Completes the lute quest for you instantly",
+    instalute
+)
 
 Section_Q:NewButton(
     "Lute quest tp",
@@ -899,6 +896,21 @@ Section_Q:NewButton(
     lutetp
 )
 
+
+
+
+Section_Q:NewButton(
+    "Lvl 5 breathing tp",
+    "Tps Lvl 5 breathing giver",
+    lvl5breath
+)
+
+
+Section_BT:NewButton(
+    "Sun trainer",
+    "Tps to Sun Trainer",
+    suntrainer
+)
 
 Section_BT:NewButton(
     "Wind Trainer",
