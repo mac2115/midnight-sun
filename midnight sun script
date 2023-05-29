@@ -331,44 +331,30 @@ local function keypress2()
     )
 end
 
-local function akazaspawner()
+local function bossspawner()
     spawn(
         function()
+            if bosses == "Akaza" then
             while not game:GetService("Workspace").Live.Bosses:FindFirstChild(bosses) and getgenv().bossautofarm do task.wait(1)  
             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1046, 24, 3180)
             keypress()
             keypress2()
             end
-        end
-    )
-end
-local function shuraspawner()
-    spawn(
-        function()
-            while not game:GetService("Workspace").Live.Bosses:FindFirstChild(bosses) do task.wait()
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1687, 167, -1868)
-            keypress()
-            end
-        end
-    )
-end
+        elseif bosses == "Shura" then
+            while not game:GetService("Workspace").Live.Bosses:FindFirstChild(bosses) and getgenv().bossautofarm  do task.wait(1) 
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1687, 167, -1868)
+                keypress()
 
-local function bossspawner()
-    spawn(
-        function()
-            if bosses == "Akaza" then
-                akazaspawner()
-               
-            elseif bosses == "Shura" then
-                
-                shuraspawner()
-                
-            else
-                return
-            end
         end
-    )
-end
+    else
+        return
+
+    end
+        end)
+    end
+
+
+
 local function killauraforboss()
     spawn(
         function()
@@ -595,20 +581,6 @@ Section:NewDropdown(
     {"Akaza", "Shura"},
     function(currentOption)
         bosses = currentOption
-    end
-)
-
-Section:NewButton(
-    "Boss spawner",
-    "Spawns the boss for you",
-    function()
-        if bosses == "Akaza" then
-            akazaspawner()
-        elseif bosses == "Shura" then
-            shuraspawner()
-        else
-            return
-        end
     end
 )
 
