@@ -334,7 +334,7 @@ end
 local function akazaspawner()
     spawn(
         function()
-            while not game:GetService("Workspace").Live.Bosses:FindFirstChild(bosses) do task.wait(1)
+            while not game:GetService("Workspace").Live.Bosses:FindFirstChild(bosses) and getgenv().bossautofarm do task.wait(1)  
             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1046, 24, 3180)
             keypress()
             keypress2()
