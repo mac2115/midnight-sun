@@ -19,6 +19,24 @@ getgenv().instantmaxlvlslayer = true
 getgenv().getquest = true
 getgenv().eventnpcfarm = true
 local vim = game:service("VirtualInputManager")
+
+local function muzanquest()
+
+game:GetService("Players").LocalPlayer.PlayerGui.Main.MuzanQuest.LocalScript.RemoteEvent:FireServer("Accept")
+
+end
+
+
+
+
+
+
+
+
+
+
+
+
 local function lvl5breath()
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(196, 361, 2091)
 end
@@ -406,6 +424,7 @@ local function boss()
                             
                         end
                     end
+
                 else
                     return
                 end
@@ -518,7 +537,7 @@ end
 
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 
-local Window = Library.CreateLib("Midnight sun v2.30 by Mac#0014", "DarkTheme")
+local Window = Library.CreateLib("Midnight sun v2.40 by Mac#0014", "DarkTheme")
 
 local Tab = Window:NewTab("Autofarm")
 
@@ -767,13 +786,19 @@ local Tab = Window:NewTab("Misc")
 local Section_MISC = Tab:NewSection("Instant max  lvl for slayers")
 
 Section_MISC:NewButton(
-    "Get crow quest(click first)",
+    "Get crow quest(slayers)",
     "Gets you the required crow quest for instant lvl",
     getquest
 )
+Section_MISC:NewButton(
+    "Get Muzan quest(demons/hybrids)",
+    "Gets you the required Muzan quest for instant lvl",
+    muzanquest
+)
+
 
 Section_MISC:NewToggle(
-        "Instant max lvl for slayers",
+        "Instant max lvl(quest needed) ",
         "Toggles instamax lvl",
         function(state)
             if state then
