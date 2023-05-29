@@ -29,14 +29,6 @@ end
 
 
 
-
-
-
-
-
-
-
-
 local function lvl5breath()
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(196, 361, 2091)
 end
@@ -159,7 +151,6 @@ end
 
 
 
-
 local function OldManYochiro()
     spawn(function()
 if getgenv().findnpc == true then
@@ -190,7 +181,6 @@ else
 end
 end)
 end
-
 
 
 
@@ -331,13 +321,23 @@ local function keypress()
         end
     )
 end
+
+local function keypress2()
+    spawn(
+        function()
+            local N = game:GetService("VirtualInputManager")
+            N:SendKeyEvent(true, "W", false, game)
+        end
+    )
+end
+
 local function akazaspawner()
     spawn(
         function()
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1045, 20, 3176)
-            wait(2)
-            while not game:GetService("Workspace").Live.Bosses:FindFirstChild(bosses) do task.wait()
+            while not game:GetService("Workspace").Live.Bosses:FindFirstChild(bosses) do task.wait(1)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1046, 24, 3180)
             keypress()
+            keypress2()
             end
         end
     )
@@ -345,10 +345,8 @@ end
 local function shuraspawner()
     spawn(
         function()
-            
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1688, 162, -1863)
-            wait(2)
             while not game:GetService("Workspace").Live.Bosses:FindFirstChild(bosses) do task.wait()
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1687, 167, -1868)
             keypress()
             end
         end
