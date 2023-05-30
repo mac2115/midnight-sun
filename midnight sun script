@@ -18,14 +18,82 @@ getgenv().autoequip = true
 getgenv().instantmaxlvlslayer = true
 getgenv().getquest = true
 getgenv().eventnpcfarm = true
-local vim = game:service("VirtualInputManager")
+getgenv().playerfarm = true 
+getgenv().autogrip2 = true
+
+
 local npcTable = {}
+local areaTable = {}
+local playerTable = {}
+local itemTable = {}
+
+for _,v in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do
+    if v:IsA("Model")  then
+        table.insert(itemTable, v.Name) 
+    end
+ end
+
+
+for _,v in pairs(game:GetService("Workspace").Live.Players:GetChildren()) do
+    if v:IsA("Model")  then
+        table.insert(playerTable, v.Name) 
+    end
+ end
+
 
 for _,v in pairs(game:GetService("Workspace").Trainers:GetChildren()) do
    if v:IsA("Model")  then
        table.insert(npcTable, v.Name) 
    end
 end
+
+for _,v in pairs(game:GetService("Workspace").Idols:GetChildren()) do
+    if v:IsA("Model")  then
+        table.insert(areaTable, v.Name) 
+    end
+ end
+
+
+
+local function players()
+spawn(function()
+if getgenv().playerfarm == true then
+    if game:GetService("Workspace").Live.Players:FindFirstChild(player)  then
+while game:GetService("Workspace").Live.Players:FindFirstChild(player) and getgenv().playerfarm   do task.wait()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Live.Players[player].HumanoidRootPart.CFrame * CFrame.new(0, 0, positionz1)
+    game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Tool").RemoteEvent:FireServer("M2")
+    game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Tool").RemoteEvent:FireServer("Hitbox",1,"M2")
+end
+else
+    return
+    end
+else
+   return
+
+ end
+
+
+
+end)
+end
+
+
+local function autogrip2()
+    spawn(
+        function()
+            if getgenv().autogrip2 == true then
+                while getgenv().autogrip2 do
+                task.wait(10)
+                game:GetService("Players").LocalPlayer.Character.Controller.RemoteEvent:FireServer("Grip")
+                end
+                    else
+                        return
+                    end
+            
+            
+            end)
+        end
+    
 
 
 
@@ -36,6 +104,12 @@ local function trainers2()
 end)
 end
 
+local function areatp()
+    spawn(function()
+
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Idols[area].HumanoidRootPart.CFrame
+end)
+end
 
 
 
@@ -52,9 +126,7 @@ local function lvl5breath()
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(196, 361, 2091)
 end
 
-local function suntrainer()
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-113, 451, 2420)
-end
+
 local function OldManYochiro1()
     spawn(function()
 if getgenv().eventnpcfarm == true then
@@ -98,9 +170,6 @@ end
     end)
 
 end
-
-
-
 
 
 local function killauraforevent()
@@ -185,14 +254,55 @@ end
 end)
 end
 
+
 local function findnpc()
     spawn(function()
         if getgenv().findnpc == true then
+
             while getgenv().findnpc and wait() do
+                if npclookingfor == "Merchant" then 
+for i, v in pairs(game:GetService("Workspace"):GetChildren()) do
+    if string.find(v.Name, npclookingfor) and v.Name ~= OldManYochiro() and not v:FindFirstChild("Shadow A. Mask")  then
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame
+    
+    end
+end
+elseif npclookingfor == "Injured" then 
+
+    for i, v in pairs(game:GetService("Workspace"):GetChildren()) do
+        if string.find(v.Name, npclookingfor) and v.Name ~= OldManYochiro() and not v:FindFirstChild("Shadow A. Mask") then
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame
+        
+        end
+    end
+
+elseif npclookingfor == "OldMan" then 
+    for i, v in pairs(game:GetService("Workspace"):GetChildren()) do
+        if string.find(v.Name, npclookingfor) and v.Name ~= OldManYochiro() and not v:FindFirstChild("Shadow A. Mask")  then
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame
+        
+        end
+    end
+elseif npclookingfor == "Muzan" then 
+    for i, v in pairs(game:GetService("Workspace"):GetChildren()) do
+        if string.find(v.Name, npclookingfor) and v.Name ~= OldManYochiro() and not v:FindFirstChild("Shadow A. Mask")  then
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame
+        
+        end
+    end
+
+else
+    return
+
+end
+
+end
+elseif npclookingfor == "Muzan" then
 for i, v in pairs(game:GetService("Workspace"):GetChildren()) do
     if string.find(v.Name, npclookingfor) and v.Name ~= OldManYochiro() and not v:FindFirstChild("Shadow A. Mask") then
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame
-    end
+    else
+        return
 end
 end
 else
@@ -203,9 +313,7 @@ end
 
 
 
-local function windtrainer()
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-28, 328, -1690)
-end
+
 
 local function noclip()
     game:GetService("RunService").Stepped:Connect(
@@ -242,8 +350,7 @@ local function autogrip()
         function()
             if getgenv().autogrip == true then
                 while getgenv().autogrip do
-                    task.wait(10)
-                    game:GetService("Players").LocalPlayer.Character.Controller.RemoteEvent:FireServer("Grip")
+                    
                 end
             else
                 return
@@ -307,9 +414,7 @@ local function muzan()
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(922, 212, 2734)
 end
 
-local function moontrainer()
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(235, 399, -3794)
-end
+
 
 local function stwtrainer()
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-61, 81, 42)
@@ -438,24 +543,7 @@ local function boss()
     )
 end
 
-local function flametrainer()
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-50, 120, 1087)
-end
 
-local function watertrainer()
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1430, 180, 1424)
-end
-
-local function misttrainer()
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(230, 180, -1973)
-end
-local function thundertrainer()
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1158, 106, 618)
-end
-
-local function soundtrainer()
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1447, 181, 1298)
-end
 
 local function killauraforautofarm()
     spawn(
@@ -540,7 +628,7 @@ end
 
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 
-local Window = Library.CreateLib("Midnight sun v2.40 by Mac#0014", "DarkTheme")
+local Window = Library.CreateLib("Midnight sun v2.50 by Mac#0014", "DarkTheme")
 
 local Tab = Window:NewTab("Autofarm")
 
@@ -691,6 +779,59 @@ Section:NewSlider(
 
 local Tab = Window:NewTab("Player")
 local Section = Tab:NewSection("Chat spammer")
+
+Section:NewToggle(
+    "Player farm toggle",
+    "Autofarms players",
+    function(state)
+        if state then
+            getgenv().playerfarm= true
+        else
+            getgenv().playerfarm = false
+        end
+        players()
+    end
+)
+Section:NewToggle(
+    "Autogrip for players",
+    "Autogrips players",
+    function(state)
+        if state then
+            getgenv().autogrip2= true
+        else
+            getgenv().autogrip2 = false
+        end
+        autogrip2()
+    end
+)
+local oldList = playerTable
+
+  local newList = playerTable
+    
+
+Section:NewDropdown("Choose a player to farm", "Choose a player to farm", oldList, function(currentOption)
+    player = currentOption
+    
+end)
+
+Section:NewButton("Refresh playerlist", "Refreshes Dropdown", function()
+    dropdown:Refresh(newList)
+  end)
+
+Section:NewSlider(
+    "Farm position",
+    "Farm position",
+    7,
+    -6,
+    function(s) -- 500 (MaxValue) | 0 (MinValue)
+        positionz1 = s
+    end
+)
+
+
+  
+  
+
 Section:NewToggle(
     "Chat spammer toggle",
     "Toggles chat spammer on",
@@ -710,6 +851,8 @@ Section:NewTextBox(
         sentence = txt
     end
 )
+
+
 local Section = Tab:NewSection("Player")
 Section:NewToggle(
     "Noclip toggle",
@@ -816,10 +959,11 @@ Section_MISC:NewToggle(
             autoequip()
         end
     )
+
     Section_MISC:NewDropdown(
         "Choose weapon to equip",
         "Weapon to choose",
-        {"Nichirin", "Old Nichirin" },
+       itemTable,
         function(currentOption)
             tool = currentOption
         end
@@ -871,13 +1015,18 @@ local Section_BAD = Tab:NewSection("Become A demon")
 local Section_STW = Tab:NewSection("See through world")
 local Section_Q = Tab:NewSection("Quests")
 local Section_BT = Tab:NewSection("Breathing Trainers")
-
+local Section_Ar = Tab:NewSection("Areas")
 
 Section_BAD:NewButton(
     "Demon Turner tp",
     "Tps to Demon Turner",
     muzan
 )
+
+Section_Ar:NewDropdown("Area teleports", "Area teleports", areaTable, function(currentOption)
+    area = currentOption
+    areatp()
+end)
 
 Section_STW:NewButton(
     "STW trainer tp",
@@ -913,24 +1062,16 @@ Section_Q:NewButton(
 )
 
 
-
-
 Section_Q:NewButton(
     "Lvl 5 breathing tp",
     "Tps Lvl 5 breathing giver",
     lvl5breath
 )
 
-Section_BT:NewDropdown("Test", "Test", npcTable, function(currentOption)
+Section_BT:NewDropdown("Trainers teleports", "Trainers teleports", npcTable, function(currentOption)
     trainer = currentOption
-    
+    trainers2()
 end)
-Section_BT:NewButton(
-    "Tp to trainer",
-    "Tps to Trainer you choose",
-    trainers2
-)
-
 
 local Tab = Window:NewTab("Server hops etc")
 local Section_SH = Tab:NewSection("Server hop")
