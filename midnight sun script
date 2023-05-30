@@ -82,8 +82,8 @@ local function autogrip2()
     spawn(
         function()
             if getgenv().autogrip2 == true then
-                while getgenv().autogrip2 do
-                task.wait(10)
+                while getgenv().autogrip2 do task.wait(10)
+                
                 game:GetService("Players").LocalPlayer.Character.Controller.RemoteEvent:FireServer("Grip")
                 end
                     else
@@ -349,8 +349,8 @@ local function autogrip()
     spawn(
         function()
             if getgenv().autogrip == true then
-                while getgenv().autogrip do
-                    
+                while getgenv().autogrip do task.wait(10)
+                    game:GetService("Players").LocalPlayer.Character.Controller.RemoteEvent:FireServer("Grip")
                 end
             else
                 return
