@@ -19,6 +19,25 @@ getgenv().instantmaxlvlslayer = true
 getgenv().getquest = true
 getgenv().eventnpcfarm = true
 local vim = game:service("VirtualInputManager")
+local npcTable = {}
+
+for _,v in pairs(game:GetService("Workspace").Trainers:GetChildren()) do
+   if v:IsA("Model")  then
+       table.insert(npcTable, v.Name) 
+   end
+end
+
+
+
+local function trainers2()
+    spawn(function()
+
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Trainers[trainer].HumanoidRootPart.CFrame
+end)
+end
+
+
+
 
 local function muzanquest()
 
@@ -806,6 +825,8 @@ Section_MISC:NewToggle(
         end
     )
 
+    
+
 Section_MISC:NewToggle(
     "Killaura toggle",
     "Toggles killaura on",
@@ -900,49 +921,17 @@ Section_Q:NewButton(
     lvl5breath
 )
 
-
+Section_BT:NewDropdown("Test", "Test", npcTable, function(currentOption)
+    trainer = currentOption
+    
+end)
 Section_BT:NewButton(
-    "Sun trainer",
-    "Tps to Sun Trainer",
-    suntrainer
+    "Tp to trainer",
+    "Tps to Trainer you choose",
+    trainers2
 )
 
-Section_BT:NewButton(
-    "Wind Trainer",
-    "Tps to Wind trainer",
-    windtrainer
-)
 
-Section_BT:NewButton(
-    "Moon Trainer",
-    "Tps to Moon trainer",
-    moontrainer
-)
-Section_BT:NewButton(
-    "Flame Trainer",
-    "Tps to Flame trainer",
-    flametrainer
-)
-Section_BT:NewButton(
-    "Mist Trainer",
-    "Tps to Mist trainer",
-    misttrainer
-)
-Section_BT:NewButton(
-    "Thunder Trainer",
-    "Tps to Thunder trainer",
-    thundertrainer
-)
-Section_BT:NewButton(
-    "Water Trainer",
-    "Tps to Water trainer",
-    watertrainer
-)
-Section_BT:NewButton(
-    "Sound Trainer",
-    "Tps to Sound trainer",
-    soundtrainer
-)
 local Tab = Window:NewTab("Server hops etc")
 local Section_SH = Tab:NewSection("Server hop")
 
