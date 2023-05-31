@@ -25,35 +25,43 @@ getgenv().autogrip2 = true
 local npcTable = {}
 local areaTable = {}
 local playerTable = {}
-local itemTable = {}
-
-for _,v in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do
-    if v:IsA("Model")  then
-        table.insert(itemTable, v.Name) 
-    end
- end
 
 
+
+local function player2()
+    spawn(function()
 for _,v in pairs(game:GetService("Workspace").Live.Players:GetChildren()) do
     if v:IsA("Model")  then
         table.insert(playerTable, v.Name) 
     end
  end
+end)
+end
 
 
+local function npc()
+    spawn(function()
 for _,v in pairs(game:GetService("Workspace").Trainers:GetChildren()) do
    if v:IsA("Model")  then
        table.insert(npcTable, v.Name) 
    end
 end
+end)
+end
 
+
+local function area()
+    spawn(function()
 for _,v in pairs(game:GetService("Workspace").Idols:GetChildren()) do
     if v:IsA("Model")  then
         table.insert(areaTable, v.Name) 
     end
  end
-
-
+end)
+end
+npc()
+player2()
+area()
 
 local function players()
 spawn(function()
@@ -963,7 +971,7 @@ Section_MISC:NewToggle(
     Section_MISC:NewDropdown(
         "Choose weapon to equip",
         "Weapon to choose",
-       itemTable,
+       {"Nichirin", "Old Nichirin"},
         function(currentOption)
             tool = currentOption
         end
@@ -1093,3 +1101,8 @@ Section_UI:NewKeybind(
         Library:ToggleUI()
     end
 )
+
+
+
+
+
