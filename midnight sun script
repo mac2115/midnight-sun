@@ -1,5 +1,4 @@
 
-
 getgenv().killaura = false
 getgenv().godmode = false
 getgenv().autobreathing = false
@@ -93,6 +92,16 @@ end
             end
         end)
     end
+end
+local function antiafk()
+    spawn(function()
+
+    for _, v in next, getconnections(game:GetService("Players").LocalPlayer.Idled) do
+        v:Disable()
+    end
+end)
+
+
 end
 
 
@@ -1208,6 +1217,12 @@ Section_SH:NewButton(
 local Tab = Window:NewTab("Settings")
 local Section_UI = Tab:NewSection("Settings")
 Section_UI:NewButton(
+    "Anti afk",
+    "Disables afk kick",
+    antiafk
+)
+
+Section_UI:NewButton(
     "Low graphics mode",
     "Turns low graphics mode on",
     lowgraphics
@@ -1226,6 +1241,8 @@ Section_UI:NewKeybind(
         Library:ToggleUI()
     end
 )
+
+
 
 
 
