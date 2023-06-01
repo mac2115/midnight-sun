@@ -106,11 +106,11 @@ end
 
 
 local function antisunburn()
-   
 
-
+    game:GetService("ReplicatedStorage").Effects.Particles.Burning:Destroy()
 
 end
+
 local function lowgraphics()
     for _,v in pairs(workspace:GetDescendants()) do
         if v.ClassName == "Part"
@@ -755,7 +755,7 @@ end
 
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 
-local Window = Library.CreateLib("Midnight sun v2.60 by Mac#0014", "DarkTheme")
+local Window = Library.CreateLib("Midnight sun v2.70 by Mac#0014", "DarkTheme")
 
 local Tab = Window:NewTab("Autofarm")
 
@@ -1122,6 +1122,12 @@ Section_MISC:NewToggle(
         end
         godmode()
     end
+)
+
+Section_MISC:NewButton(
+    "antisunburn",
+    "Disables sunburn",
+    antisunburn
 )
 
 Section_MISC:NewToggle(
