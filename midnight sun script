@@ -778,16 +778,19 @@ Section:NewToggle(
     "Autofarm",
     "Toggles Autofarm",
     function(state)
-        if state then
-            getgenv().autofarm = true
-        else
-            getgenv().autofarm = false
-        end
+        getgenv().autofarm = state
+killauraforautofarm()
+        while true do
+            task.wait()
+            if getgenv().autofarm == false then
+                break
+            end
         
-        killauraforautofarm()
-        autofarm(demon)
+            autofarm(demon)
+        end
     end
 )
+
 
 Section:NewDropdown(
     "Choose Mob",
@@ -932,6 +935,7 @@ Section1:NewToggle(
         players()
     end
 )
+
 Section1:NewToggle(
     "Autogrip for players",
     "Autogrips players",
