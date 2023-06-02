@@ -699,26 +699,18 @@ local function killauraforautofarm()
 end
 
 local function autofarm(demon)
-    spawn(
-        function()
-            if getgenv().autofarm == true then
-                while getgenv().autofarm do
-                    task.wait()
-                    if game:GetService("Workspace").Live.Npcs:FindFirstChild(demon) then
-                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Live.Npcs[demon].HumanoidRootPart.CFrame * CFrame.new(0, 0, positionz)
+    local mob = game:GetService("Workspace").Live.Npcs:FindFirstChild(demon)
+    
+    if mob == nil then
+        return nil
+    end
 
+    repeat
+        task.wait()
 
-                    else
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Live.Npcs[demon].HumanoidRootPart.CFrame * CFrame.new(0, 0, positionz)
+    until mob == nil or getgenv().autofarm == false
 
-                        return
-
-                    end
-                end
-            else
-                return
-            end
-        end
-    )
 end
 
 local function killaura()
