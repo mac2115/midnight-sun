@@ -19,8 +19,6 @@ getgenv().getquest = true
 getgenv().eventnpcfarm = true
 getgenv().playerfarm = true 
 getgenv().autogrip2 = true
-
-
 local npcTable = {}
 local areaTable = {}
 local playerTable = {}
@@ -29,6 +27,7 @@ local AllIDs = {}
 local foundAnything = ""
 local actualHour = os.date("!*t").hour
 local Deleted = false
+
 local File = pcall(function()
     AllIDs = game:GetService('HttpService'):JSONDecode(readfile("NotSameServers.json"))
 end)
@@ -83,7 +82,7 @@ end
     end
 end
 
- local function Teleport()
+ local function serverhop()
     while wait() do
         pcall(function()
             TPReturner()
@@ -93,6 +92,7 @@ end
         end)
     end
 end
+
 local function antiafk()
     spawn(function()
 
@@ -699,6 +699,12 @@ local function autofarm(demon)
                     task.wait()
                     if game:GetService("Workspace").Live.Npcs:FindFirstChild(demon) then
                         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Live.Npcs[demon].HumanoidRootPart.CFrame * CFrame.new(0, 0, positionz)
+
+
+                    else
+
+                        return
+                        
                     end
                 end
             else
