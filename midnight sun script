@@ -768,7 +768,7 @@ end
 
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 
-local Window = Library.CreateLib("Midnight sun v2.70 by Mac#0014 discord server: 7Zd6xWc9M4 ", "DarkTheme")
+local Window = Library.CreateLib("Midnight sun v2.80 by Mac#0014 discord server: 7Zd6xWc9M4 ", "DarkTheme")
 
 local Tab = Window:NewTab("Autofarm")
 
@@ -918,9 +918,9 @@ Section:NewSlider(
 
 
 local Tab = Window:NewTab("Player")
-local Section = Tab:NewSection("Chat spammer")
+local Section1 = Tab:NewSection("Player autofarm")
 
-Section:NewToggle(
+Section1:NewToggle(
     "Player farm toggle",
     "Autofarms players",
     function(state)
@@ -932,7 +932,7 @@ Section:NewToggle(
         players()
     end
 )
-Section:NewToggle(
+Section1:NewToggle(
     "Autogrip for players",
     "Autogrips players",
     function(state)
@@ -949,16 +949,16 @@ local oldList = playerTable
   local newList = playerTable
     
 
-Section:NewDropdown("Choose a player to farm", "Choose a player to farm", oldList, function(currentOption)
+Section1:NewDropdown("Choose a player to farm", "Choose a player to farm", oldList, function(currentOption)
     player = currentOption
     
 end)
 
-Section:NewButton("Refresh playerlist", "Refreshes Dropdown", function()
+Section1:NewButton("Refresh playerlist", "Refreshes Dropdown", function()
     dropdown:Refresh(newList)
   end)
 
-Section:NewSlider(
+Section1:NewSlider(
     "Farm position",
     "Farm position",
     7,
@@ -969,8 +969,7 @@ Section:NewSlider(
 )
 
 
-  
-  
+local Section = Tab:NewSection("Chat spammer")
 
 Section:NewToggle(
     "Chat spammer toggle",
@@ -1053,8 +1052,6 @@ Section:NewSlider(
 )
 
 local Tab = Window:NewTab("Misc")
-
-
 local Section_MISC = Tab:NewSection("Instant max  lvl for slayers")
 
 Section_MISC:NewButton(
@@ -1103,7 +1100,7 @@ Section_MISC:NewToggle(
     Section_MISC:NewDropdown(
         "Choose weapon to equip",
         "Weapon to choose",
-       {"Nichirin", "Old Nichirin"},
+       {"Nichirin", "Old Nichirin", "Dual Nichirin", "Strange Nichirin"},
         function(currentOption)
             tool = currentOption
         end
