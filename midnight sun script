@@ -93,6 +93,13 @@ end
     end
 end
 
+game.StarterGui:SetCore("SendNotification", {
+    Title = "Make sure to join my discord server!"; -- the title (ofc)
+    Text = "https://discord.gg/7Zd6xWc9M4"; -- what the text says (ofc)
+    Icon = ""; -- the image if u want. 
+    Duration = 20; -- how long the notification should in secounds
+    })
+
 local function antiafk()
     spawn(function()
 
@@ -704,7 +711,7 @@ local function autofarm(demon)
                     else
 
                         return
-                        
+
                     end
                 end
             else
@@ -761,7 +768,7 @@ end
 
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 
-local Window = Library.CreateLib("Midnight sun v2.70 by Mac#0014", "DarkTheme")
+local Window = Library.CreateLib("Midnight sun v2.70 by Mac#0014 discord server: 7Zd6xWc9M4 ", "DarkTheme")
 
 local Tab = Window:NewTab("Autofarm")
 
@@ -1245,6 +1252,8 @@ Section_UI:NewButton(
     removefog
 )
 
+
+
 Section_UI:NewKeybind(
     "Ui toggle",
     "Toggles Ui",
@@ -1254,6 +1263,8 @@ Section_UI:NewKeybind(
     end
 )
 
+
+local Section_Credits = Tab:NewSection("Discord server: 7Zd6xWc9M4")
 
 
 
