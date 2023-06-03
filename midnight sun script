@@ -542,7 +542,7 @@ local function walkspeed()
     )
 end
 
-local function serverhop()
+local function rejoin()
     game:GetService("TeleportService"):Teleport(8874112980)
 end
 
@@ -1216,12 +1216,12 @@ local Section_SH = Tab:NewSection("Server hop")
 Section_SH:NewButton(
     "Server hop",
     "Hops into another server",
-    Teleport
+    serverhop
 )
 Section_SH:NewButton(
     "Rejoin",
     "Rejoins",
-    serverhop
+    rejoin
 )
 
 local Tab = Window:NewTab("Settings")
