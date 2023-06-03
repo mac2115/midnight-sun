@@ -103,13 +103,15 @@ game.StarterGui:SetCore("SendNotification", {
 local function antiafk()
     spawn(function()
 
-    for _, v in next, getconnections(game:GetService("Players").LocalPlayer.Idled) do
-        v:Disable()
-    end
+        wait(3)
+        local VirtualUser=game:service'VirtualUser'
+        game:service('Players').LocalPlayer.Idled:connect(function()
+        VirtualUser:CaptureController()
+        VirtualUser:ClickButton2(Vector2.new())
+        end)
 end)
-
-
 end
+
 
 
 local function antisunburn()
@@ -599,9 +601,9 @@ local function bossspawner()
             keypress2()
             end
         elseif bosses == "Shura" then
-            while not game:GetService("Workspace").Live.Bosses:FindFirstChild(bosses) and getgenv().bossautofarm  do task.wait(1) 
+            while not game:GetService("Workspace").Live.Bosses:FindFirstChild(bosses) and getgenv().bossautofarm  do task.wait(2) 
                 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1687, 167, -1868)
-                keypress()
+                fireproximityprompt(game:GetService("Workspace").Gizli.ProximityPrompt, 1, true)
 
         end
     else
@@ -713,6 +715,7 @@ local function autofarm(demon)
 
 end
 
+
 local function killaura()
     spawn(
         function()
@@ -760,7 +763,7 @@ end
 
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 
-local Window = Library.CreateLib("Midnight sun v2.80 by Mac#0014 discord server: 7Zd6xWc9M4 ", "DarkTheme")
+local Window = Library.CreateLib("Midnight sun v2.90 by Mac#0014 discord server: 7Zd6xWc9M4 ", "DarkTheme")
 
 local Tab = Window:NewTab("Autofarm")
 
@@ -1130,11 +1133,6 @@ Section_MISC:NewToggle(
     end
 )
 
-Section_MISC:NewButton(
-    "antisunburn",
-    "Disables sunburn",
-    antisunburn
-)
 
 Section_MISC:NewToggle(
     "Auto-breathing toggle",
