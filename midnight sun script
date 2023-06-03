@@ -22,6 +22,7 @@ getgenv().autogrip2 = true
 local npcTable = {}
 local areaTable = {}
 local playerTable = {}
+local haoriTable = {}
 local PlaceID = game.PlaceId
 local AllIDs = {}
 local foundAnything = ""
@@ -114,11 +115,7 @@ end
 
 
 
-local function antisunburn()
 
-    game:GetService("ReplicatedStorage").Effects.Particles.Burning:Destroy()
-
-end
 
 local function lowgraphics()
     for _,v in pairs(workspace:GetDescendants()) do
@@ -187,9 +184,27 @@ for _,v in pairs(game:GetService("Workspace").Idols:GetChildren()) do
  end
 end)
 end
+local function haori()
+    for i, v in pairs(game:GetService("Workspace"):GetChildren()) do
+        if string.find(v.Name, "HaoriGiver")  then
+            
+            table.insert(haoriTable, v.Name)
+        end
+    end
+    end
+    
+   
 npc()
 player2()
 area()
+haori()
+
+local function tphaori()
+    
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace")[guyhaori].HumanoidRootPart.CFrame
+   
+end
+
 
 local function players()
 spawn(function()
@@ -713,7 +728,8 @@ local function autofarm(demon)
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Live.Npcs[demon].HumanoidRootPart.CFrame * CFrame.new(0, 0, positionz)
     until mob == nil or getgenv().autofarm == false
 
-end
+end --rewritten by Alex#3281
+
 
 
 local function killaura()
@@ -1124,11 +1140,7 @@ Section_MISC:NewToggle(
     "Godmode toggle",
     "Toggles godmode on",
     function(state)
-        if state then
-            getgenv().godmode = true
-        else
-            getgenv().godmode = false
-        end
+            getgenv().godmode = state
         godmode()
     end
 )
@@ -1138,11 +1150,7 @@ Section_MISC:NewToggle(
     "Auto-breathing toggle",
     "Toggles autobreathing on",
     function(state)
-        if state then
-            getgenv().autobreathing = true
-        else
-            getgenv().autobreathing = false
-        end
+            getgenv().autobreathing = state
         autobreathing()
     end
 )
@@ -1153,6 +1161,12 @@ local Section_STW = Tab:NewSection("See through world")
 local Section_Q = Tab:NewSection("Quests")
 local Section_BT = Tab:NewSection("Breathing Trainers")
 local Section_Ar = Tab:NewSection("Areas")
+local Section_HA = Tab:NewSection("Haori related")
+
+Section_HA:NewDropdown("Haori givers teleports", "Trainers teleports", haoriTable, function(currentOption)
+    guyhaori = currentOption
+    tphaori()
+end)
 
 Section_BAD:NewButton(
     "Demon Turner tp",
