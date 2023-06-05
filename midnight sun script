@@ -215,11 +215,9 @@ while game:GetService("Workspace").Live.Players:FindFirstChild(player) and getge
     game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Tool").RemoteEvent:FireServer("M2")
     game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Tool").RemoteEvent:FireServer("Hitbox",1,"M2")
 end
-else
-    return
+
     end
-else
-   return
+
 
  end
 
@@ -237,8 +235,7 @@ local function autogrip2()
                 
                 game:GetService("Players").LocalPlayer.Character.Controller.RemoteEvent:FireServer("Grip")
                 end
-                    else
-                        return
+                
                     end
             
             
@@ -288,8 +285,7 @@ if getgenv().eventnpcfarm == true then
         end
     end
 
-else
-    return
+
 end
 end)
 end
@@ -313,8 +309,7 @@ for i, v in pairs(game:GetService("Workspace"):GetChildren()) do
 end
 end
 end
-else
-    return
+
 
 end
 
@@ -335,8 +330,7 @@ local function killauraforevent()
                         game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Tool").RemoteEvent:FireServer("Hitbox",1,"M2")
                     end)
                 end
-            else
-                return
+         
             end
         end
     )
@@ -382,8 +376,7 @@ spawn(function()
             end
         end
     end
-else
-    return
+
 end
 end)
 end
@@ -399,8 +392,7 @@ if getgenv().findnpc == true then
             return v.Name
         end
     end
-else
-    return
+
 end
 end)
 end
@@ -442,8 +434,7 @@ elseif npclookingfor == "Muzan" then
         end
     end
 
-else
-    return
+
 
 end
 
@@ -452,12 +443,10 @@ elseif npclookingfor == "Muzan" then
 for i, v in pairs(game:GetService("Workspace"):GetChildren()) do
     if string.find(v.Name, npclookingfor) and v.Name ~= OldManYochiro() and not v:FindFirstChild("Shadow A. Mask") then
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame
-    else
-        return
+    
 end
 end
-else
-    return
+
 end
 end)
 end
@@ -503,8 +492,7 @@ local function autogrip()
                 while getgenv().autogrip do task.wait(10)
                     game:GetService("Players").LocalPlayer.Character.Controller.RemoteEvent:FireServer("Grip")
                 end
-            else
-                return
+        
             end
         end
     )
@@ -520,8 +508,7 @@ local function chatspammer()
                     task.wait()
                     game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(sentence,"All")
                 end
-            else
-                return
+          
             end
         end
     )
@@ -535,8 +522,7 @@ local function jumpower()
                     task.wait()
                     game.Players.LocalPlayer.Character.Humanoid.JumpPower = amount1
                 end
-            else
-                return
+         
             end
         end
     )
@@ -550,8 +536,7 @@ local function walkspeed()
                     task.wait()
                     game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = amount
                 end
-            else
-                return
+            
             end
         end
     )
@@ -621,8 +606,7 @@ local function bossspawner()
                 fireproximityprompt(game:GetService("Workspace").Gizli.ProximityPrompt, 1, true)
 
         end
-    else
-        return
+    
 
     end
         end)
@@ -642,8 +626,7 @@ local function killauraforboss()
                         game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Tool").RemoteEvent:FireServer("Hitbox",1,"M2")
                     end)
                 end
-            else
-                return
+            
             end
         end
     )
@@ -684,16 +667,13 @@ local function boss()
                         end
                     end
 
-                else
-                    return
+               
                 end
-            else
-                return
-            end
+          
         end
-    )
+    
+end)
 end
-
 
 
 local function killauraforautofarm()
@@ -708,8 +688,7 @@ local function killauraforautofarm()
                         game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Tool").RemoteEvent:FireServer("Hitbox",1,"M1")
                     end)
                 end
-            else
-                return
+          
             end
         end
     )
@@ -744,8 +723,7 @@ local function killaura()
                         game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Tool").RemoteEvent:FireServer("Hitbox",1,"M1")
                     end)
                 end
-            else
-                return
+           
             end
         end
     )
@@ -759,8 +737,7 @@ local function godmode()
                     task.wait()
                     game.Players.LocalPlayer.Character.Dash.RemoteEvent:FireServer("Falldmg", 0 / 0)
                 end
-            else
-                return
+           
             end
         end
     )
@@ -770,8 +747,7 @@ local function autobreathing()
     spawn(function()
         if getgenv().autobreathing == true then
             game:GetService("Players").LocalPlayer.Character.Breath.RemoteEvent:FireServer("Start")
-        else
-            return
+      
         end
     end)
 end
