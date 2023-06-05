@@ -1236,6 +1236,11 @@ Section_UI:NewButton(
     removefog
 )
 
+Section_UI:NewButton(
+    "Copy discord invite",
+    "Copies discord invite",
+    setclipboard("discord.gg/macscripts")
+)
 
 
 Section_UI:NewKeybind(
@@ -1248,7 +1253,7 @@ Section_UI:NewKeybind(
 )
 
 
-local Section_Credits = Tab:NewSection("Discord server: macscripts")
+
 
 
 
