@@ -695,20 +695,15 @@ local function killauraforautofarm()
 end
 
 local function autofarm(demon)
-    local mob = game:GetService("Workspace").Live.Npcs:FindFirstChild(demon)
-    
-    if mob == nil then
-        return nil
+    if getgenv().autofarm == true then
+
+if game:GetService("Workspace").Live.Npcs:FindFirstChild(demon) then
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Live.Npcs[demon].HumanoidRootPart.CFrame * CFrame.new(0, positionz, 0) * CFrame.Angles(math.rad(-90),0,0)
+end
+
     end
 
-    repeat
-        task.wait()
-
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Live.Npcs[demon].HumanoidRootPart.CFrame * CFrame.new(0, positionz, 0) * CFrame.Angles(math.rad(-90),0,0)
-
-    until mob == nil or getgenv().autofarm == false
-
-end --rewritten by Alex#3281
+end 
 
 
 
@@ -773,7 +768,6 @@ killauraforautofarm()
             if getgenv().autofarm == false then
                 break
             end
-        
             autofarm(demon)
         end
     end
@@ -804,8 +798,8 @@ Section:NewToggle(
 Section:NewSlider(
     "Farm position",
     "Farm position",
-    7,
-    -6,
+    10,
+    -10,
     function(s) -- 500 (MaxValue) | 0 (MinValue)
         positionz = s
     end
