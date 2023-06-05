@@ -96,7 +96,7 @@ end
 
 game.StarterGui:SetCore("SendNotification", {
     Title = "Make sure to join my discord server!"; -- the title (ofc)
-    Text = "https://discord.gg/7Zd6xWc9M4"; -- what the text says (ofc)
+    Text = "discord.gg/macscripts"; -- what the text says (ofc)
     Icon = ""; -- the image if u want. 
     Duration = 20; -- how long the notification should in secounds
     })
@@ -697,14 +697,22 @@ end
 local function autofarm(demon)
     if getgenv().autofarm == true then
 
-if game:GetService("Workspace").Live.Npcs:FindFirstChild(demon) then
+if game:GetService("Workspace").Live.Npcs:FindFirstChild(demon)  then
+
+if game:GetService("Workspace").Live.Npcs[demon].Humanoid.Health > 0 then
+
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Live.Npcs[demon].HumanoidRootPart.CFrame * CFrame.new(0, positionz, 0) * CFrame.Angles(math.rad(-90),0,0)
+
+elseif game:GetService("Workspace").Live.Npcs[demon].Humanoid.Health <= 0 then
+
+game:GetService("Workspace").Live.Npcs[demon]:Destroy()
+
 end
 
     end
 
 end 
-
+end
 
 
 local function killaura()
@@ -751,7 +759,7 @@ end
 
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 
-local Window = Library.CreateLib("Midnight sun v2.95 by Mac#0014 discord server: 7Zd6xWc9M4 ", "DarkTheme")
+local Window = Library.CreateLib("Midnight sun v2.95 by Mac#0014 discord server: discord.gg/macscripts ", "DarkTheme")
 
 local Tab = Window:NewTab("Autofarm")
 
@@ -1240,7 +1248,7 @@ Section_UI:NewKeybind(
 )
 
 
-local Section_Credits = Tab:NewSection("Discord server: 7Zd6xWc9M4")
+local Section_Credits = Tab:NewSection("Discord server: macscripts")
 
 
 
