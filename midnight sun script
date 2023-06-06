@@ -642,14 +642,16 @@ local function boss()
 
                         if game:GetService("Workspace").Live.Bosses:FindFirstChild(bosses) and not game:GetService("Workspace").Live.BossMinions:FindFirstChild("BossUltra") then
                             
-                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Live.Bosses[bosses].HumanoidRootPart.CFrame * CFrame.new(0, 0, position1)
+                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Live.Bosses[bosses].HumanoidRootPart.CFrame * CFrame.new(0, position1, 0) * CFrame.Angles(math.rad(-90),0,0)
+
 
                         elseif not game:GetService("Workspace").Live.Bosses:FindFirstChild(bosses) then
                         
                             bossspawner()
-                        wait(5)
+                        wait(9)
                         elseif game:GetService("Workspace").Live.BossMinions:FindFirstChild("BossUltra") then
-                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Live.BossMinions.BossUltra.HumanoidRootPart.CFrame * CFrame.new(0, 0, position1)
+                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Live.BossMinions.BossUltra.HumanoidRootPart.CFrame * CFrame.new(0, position1, 0) * CFrame.Angles(math.rad(-90),0,0)
+
                         end
                     end
                 elseif bosses == "Shura" then
@@ -658,11 +660,11 @@ local function boss()
                         if game:GetService("Workspace").Live.Bosses:FindFirstChild(bosses) then
                             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =
                                 game:GetService("Workspace").Live.Bosses[bosses].HumanoidRootPart.CFrame *
-                                CFrame.new(0, 0, position1)
+                                CFrame.new(0, position1, 0)* CFrame.Angles(math.rad(-90),0,0)
                         elseif not game:GetService("Workspace").Live.Bosses:FindFirstChild(bosses) then
                            
                             bossspawner()
-                            wait(5)
+                            wait(9)
                             
                         end
                     end
@@ -759,7 +761,7 @@ end
 
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 
-local Window = Library.CreateLib("Midnight sun v2.95 by Mac#0014 discord server: discord.gg/macscripts ", "DarkTheme")
+local Window = Library.CreateLib("Midnight sun v3.00 by Mac#0014 discord server: discord.gg/macscripts ", "DarkTheme")
 
 local Tab = Window:NewTab("Autofarm")
 
@@ -841,8 +843,8 @@ Section:NewToggle(
 Section:NewSlider(
     "Farm position ",
     "Farm position",
-    7,
-    -7,
+    10,
+    -5,
     function(s) -- 500 (MaxValue) | 0 (MinValue)
         position1 = s
     end
