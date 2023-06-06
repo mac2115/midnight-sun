@@ -904,8 +904,8 @@ Section:NewDropdown(
 Section:NewSlider(
     "Farm position",
     "Farm position",
-    7,
-    -7,
+    10,
+    -5,
     function(s) -- 500 (MaxValue) | 0 (MinValue)
         positionevent = s
     end
@@ -958,7 +958,7 @@ Section1:NewSlider(
     "Farm position",
     "Farm position",
     10,
-    -10,
+    -5,
     function(s) -- 500 (MaxValue) | 0 (MinValue)
         positionz1 = s
     end
