@@ -642,7 +642,7 @@ local function boss()
 
                         if game:GetService("Workspace").Live.Bosses:FindFirstChild(bosses) and not game:GetService("Workspace").Live.BossMinions:FindFirstChild("BossUltra") then
                             
-                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Live.Bosses[bosses].HumanoidRootPart.CFrame * CFrame.new(0, position1, 0) * CFrame.Angles(math.rad(-90),0,0)
+                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Live.Bosses[bosses].HumanoidRootPart.CFrame * CFrame.new(0, 0, position1)
 
 
                         elseif not game:GetService("Workspace").Live.Bosses:FindFirstChild(bosses) then
@@ -650,7 +650,7 @@ local function boss()
                             bossspawner()
                         wait(9)
                         elseif game:GetService("Workspace").Live.BossMinions:FindFirstChild("BossUltra") then
-                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Live.BossMinions.BossUltra.HumanoidRootPart.CFrame * CFrame.new(0, position1, 0) * CFrame.Angles(math.rad(-90),0,0)
+                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Live.BossMinions.BossUltra.HumanoidRootPart.CFrame * CFrame.new(0,0, position1) 
 
                         end
                     end
@@ -660,7 +660,7 @@ local function boss()
                         if game:GetService("Workspace").Live.Bosses:FindFirstChild(bosses) then
                             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =
                                 game:GetService("Workspace").Live.Bosses[bosses].HumanoidRootPart.CFrame *
-                                CFrame.new(0, position1, 0)* CFrame.Angles(math.rad(-90),0,0)
+                                CFrame.new(0, 0, position1)
                         elseif not game:GetService("Workspace").Live.Bosses:FindFirstChild(bosses) then
                            
                             bossspawner()
@@ -705,17 +705,13 @@ if game:GetService("Workspace").Live.Npcs[demon].Humanoid.Health > 0 then
 
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Live.Npcs[demon].HumanoidRootPart.CFrame * CFrame.new(0, positionz, 0) * CFrame.Angles(math.rad(-90),0,0)
 
-elseif game:GetService("Workspace").Live.Npcs[demon].Humanoid.Health <= 0 then
 
-game:GetService("Workspace").Live.Npcs[demon]:Destroy()
-
-end
 
     end
 
 end 
 end
-
+end
 
 local function killaura()
     spawn(
